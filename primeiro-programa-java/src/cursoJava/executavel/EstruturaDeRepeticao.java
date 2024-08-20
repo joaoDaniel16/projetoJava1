@@ -18,11 +18,9 @@ public class EstruturaDeRepeticao {
 		// for
 		// inicializar / repetir ate / acrescimo 
 		for(int i = 10;i >= 1; i--) {
-			//System.out.println(i);
+			System.out.println(i);
 		}
 		
-		boolean t = true;
-		boolean f = false;
-		System.out.println(t&&f);
+
 	}
 }
