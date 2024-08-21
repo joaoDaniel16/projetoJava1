@@ -1,4 +1,4 @@
-package cursoJava.executavel;
+package cursoJava.executavel.basico;
 
 public class OperadorLogico {
 
