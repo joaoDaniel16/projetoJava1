@@ -14,6 +14,19 @@ public class EntradaDeDados {
 		int divisao = (int) (carroNumero / pessoasNumero);
 		double resto = carroNumero % pessoasNumero;
 		
-		JOptionPane.showMessageDialog(null, "a divisao é : " + divisao + " e soubrou "+ resto);
+		int resposta = JOptionPane.showConfirmDialog(null, "deseja ve o resultado da divisao?");
+		
+		
+		System.out.println(resposta);
+		if (resposta == 0) {
+			JOptionPane.showMessageDialog(null, "a divisao é : " + divisao);
+		}
+		
+		resposta = JOptionPane.showConfirmDialog(null, "deseja ve o resto da divisao?");
+		
+		if (resposta == 0) {
+			JOptionPane.showMessageDialog(null, "a resto é : " + resto);
+		}
+	
 	}
 }
