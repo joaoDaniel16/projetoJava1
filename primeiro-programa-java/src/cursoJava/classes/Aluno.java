@@ -1,9 +1,11 @@
 package cursoJava.classes;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Aluno {
-	
+
 	private String nome;
 	private String dataNascimento;
 	private String registroGeral;
@@ -14,28 +16,20 @@ public class Aluno {
 	private String nomeEscola;
 	private String serieMatriculado;
 	private int idade;
-	
-	private Disciplina disciplina = new Disciplina();
-	
-	// contrutores 
-	public Aluno() { 
-		
+
+	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+
+	// contrutores
+	public Aluno() {
+
 	}
-	
-	public Aluno(String nomePadrao) { 
+
+	public Aluno(String nomePadrao) {
 		nome = nomePadrao;
 	}
-	
-	
-	// metodos setters e getters 
-	
-	
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
-	}
-	public Disciplina getDisciplina() {
-		return disciplina;
-	}
+
+	// metodos setters e getters
+
 	public String getNome() {
 		return nome;
 	}
@@ -48,7 +42,13 @@ public class Aluno {
 		return dataNascimento;
 	}
 
-	
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+
+	public void setDisciplinas(List<Disciplina> disciplinas) {
+		this.disciplinas = disciplinas;
+	}
 
 	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
@@ -118,7 +118,7 @@ public class Aluno {
 		this.idade = idade;
 	}
 
-
+	
 	
 
 	@Override
@@ -126,7 +126,11 @@ public class Aluno {
 		return "Aluno [nome=" + nome + ", dataNascimento=" + dataNascimento + ", registroGeral=" + registroGeral
 				+ ", numeroCpf=" + numeroCpf + ", nomeMae=" + nomeMae + ", nomePai=" + nomePai + ", dataMatricula="
 				+ dataMatricula + ", nomeEscola=" + nomeEscola + ", serieMatriculado=" + serieMatriculado + ", idade="
-				+ idade + ", disciplina=" + disciplina + "]";
+				+ idade + ", disciplinas=" + disciplinas + "]";
+	}
+	
+	public String mostrarDisciplinas() {
+		return ", disciplinas=" + disciplinas + "]";
 	}
 
 	@Override
@@ -147,24 +151,27 @@ public class Aluno {
 	}
 
 	public double getMediaNota() {
-		double media = (disciplina.getNota1()+disciplina.getNota2()+
-				disciplina.getNota3()+disciplina.getNota4())/4;
-		return media;
+		double somaNotas = 0;
+		for (Disciplina disciplina : disciplinas) {
+			somaNotas += disciplina.getNota();
+		}
+		return somaNotas/disciplinas.size();
 	}
-	
+
 	public String getResultado() {
 		double media = this.getMediaNota();
-		if(media < 5) {
+		if (media < 5) {
 			return "o aluno " + getNome() + " esta reprovado";
-		} else if(media >= 5 && media < 7) {
+		} else if (media >= 5 && media < 7) {
 			return "o aluno " + getNome() + " esta em recuperacao";
-		} else{
+		} else {
 			return "o aluno " + getNome() + " esta aprovado";
 		}
-		
+
+		}
+
+	
 	}
-	
-	
-	
-	
-}
+
+
+
