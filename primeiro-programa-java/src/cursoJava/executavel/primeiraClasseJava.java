@@ -1,22 +1,23 @@
 package cursoJava.executavel;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.swing.JOptionPane;
 
 import cursoJava.classes.Aluno;
 import cursoJava.classes.Disciplina;
+import cursoJava.classes.StatusAluno;
 
 public class primeiraClasseJava {
 
 	public static void main(String[] args) {
-		
+		HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
 		List<Aluno> alunos = new ArrayList<Aluno>();
-		
-		
-		
-		for (int i = 0; i <= 1; i++) {
+
+		// repeticao para os alunos 
+		for (int i = 0; i <= 2; i++) {
 		String nome = JOptionPane.showInputDialog("digite o nome do aluno");
 		/*String dataNascimento = JOptionPane.showInputDialog("digite a data de nascimento do aluno");
 		String registroGeral = JOptionPane.showInputDialog("digite o registro geral do aluno");
@@ -32,8 +33,7 @@ public class primeiraClasseJava {
 		
 		boolean verificador = true;
 		
-		
-		
+		// repeticao para as disciplinas
 		while(verificador) {
 			
 			String disciplina = JOptionPane.showInputDialog("digite o nome da disciplina");
@@ -45,7 +45,8 @@ public class primeiraClasseJava {
 			if(disciplinas.getDisciplina()!=null) {
 				String nota = JOptionPane.showInputDialog("digite a nota da disciplina");
 				
-				disciplinas.setNota(Integer.valueOf(nota));
+				
+				disciplinas.setNota(Double.parseDouble(nota));
 				aluno1.getDisciplinas().add(disciplinas);
 				
 			}else {
@@ -53,8 +54,8 @@ public class primeiraClasseJava {
 			}
 				
 		}
-		
-		
+			
+		/*
 		int escolha = JOptionPane.showConfirmDialog(null, "deseja remover alguma disciplina:" );
 		
 		int continuarRemover = 0;
@@ -67,6 +68,7 @@ public class primeiraClasseJava {
 			continuarRemover = JOptionPane.showConfirmDialog(null, "deseja remover mais?");
 			}	
 		}
+		*/
 		
 		aluno1.setNome(nome);
 		//System.out.println(aluno1.getNome());
@@ -83,8 +85,9 @@ public class primeiraClasseJava {
 		alunos.add(aluno1);
 		}
 		
+		/*
 		for (Aluno aluno : alunos) {
-			if (aluno.getNome().equalsIgnoreCase("joao")) {
+			if (aluno.getNome().equalsIgnoreCase("passar o nome do aluno")) {
 				alunos.remove(aluno);
 				break;
 			
@@ -102,13 +105,42 @@ public class primeiraClasseJava {
 				for (Disciplina disciplina : aluno2.getDisciplinas()) {
 					System.out.println(disciplina.getDisciplina());
 				}
+			} 
+ 
+		 }
+		 */
+		
+		maps.put(StatusAluno.APROVADO, new ArrayList<Aluno>());
+		maps.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());
+		maps.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());
+		
+		for (Aluno aluno : alunos) {
+			if (aluno.getResultado().equalsIgnoreCase(StatusAluno.APROVADO)) {
+				maps.get(StatusAluno.APROVADO).add(aluno);
+				
+				}else if(aluno.getResultado().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
+					maps.get(StatusAluno.RECUPERACAO).add(aluno);
+			}else {
+				maps.get(StatusAluno.REPROVADO).add(aluno);
 			}
-			
 		}
 		
+		System.out.println("lista de alunos aprovados");
+		for(Aluno aluno : maps.get(StatusAluno.APROVADO)) {
+			System.out.println("resultado :" + aluno.getNome() + " " + aluno.getResultado() 
+			+ " com media de : " + aluno.getMediaNota());
+		}
 		
+		System.out.println("lista de alunos em recuperacao");
+		for(Aluno aluno : maps.get(StatusAluno.RECUPERACAO)) {
+			System.out.println("resultado :" + aluno.getNome() + " "  + aluno.getResultado() 
+			+ " com media de : " + aluno.getMediaNota());
+		}
 		
-	
+		System.out.println("lista de alunos reprovado");
+		for(Aluno aluno : maps.get(StatusAluno.REPROVADO)) {
+			System.out.println("resultado :" + aluno.getNome() + " " + aluno.getResultado() 
+			+ " com media de : " + aluno.getMediaNota());
+		}
 	}
-	
 }

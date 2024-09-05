@@ -161,11 +161,11 @@ public class Aluno {
 	public String getResultado() {
 		double media = this.getMediaNota();
 		if (media < 5) {
-			return "o aluno " + getNome() + " esta reprovado";
+			return StatusAluno.REPROVADO;
 		} else if (media >= 5 && media < 7) {
-			return "o aluno " + getNome() + " esta em recuperacao";
+			return StatusAluno.RECUPERACAO;
 		} else {
-			return "o aluno " + getNome() + " esta aprovado";
+			return StatusAluno.APROVADO;
 		}
 
 		}
