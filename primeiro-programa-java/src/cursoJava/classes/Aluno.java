@@ -4,19 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Aluno {
-
-	private String nome;
-	private String dataNascimento;
-	private String registroGeral;
-	private String numeroCpf;
-	private String nomeMae;
-	private String nomePai;
+public class Aluno extends Pessoa{
+	
 	private String dataMatricula;
 	private String nomeEscola;
 	private String serieMatriculado;
-	private int idade;
-
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
 	// contrutores
@@ -169,6 +161,12 @@ public class Aluno {
 		}
 
 		}
+
+	@Override
+	public double salario() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	
 	}
